@@ -28,7 +28,7 @@ You can try the live demo here:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/bagusvalentinoo/express-multilingual-app
+   git clone https://github.com/bagusvalentinoo/express-multilingual-app.git
    cd express-multilingual-app
    ```
 
