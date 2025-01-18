@@ -2,6 +2,6 @@
   "watch": ["src"],
   "ext": "js,json",
   "ignore": ["src/**/*.test.js"],
-  "exec": "node --trace-warnings --experimental-specifier-resolution=node ./src/app.js",
+  "exec": "node ./src/app.js",
   "delay": "1000"
 }
