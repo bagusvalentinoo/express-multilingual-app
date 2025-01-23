@@ -36,7 +36,7 @@ const logger = createLogger({
 
     // File transport for error logs
     new transports.File({
-      filename: path.join(__dirname, '../../logs', 'application.log'),
+      filename: path.join(__dirname, '../../logs', 'app.log'),
       level: 'error',
       maxsize: 5242880, // 5MB
       maxFiles: 5,
@@ -50,13 +50,13 @@ const logger = createLogger({
 // Handle uncaught exceptions and unhandled rejections
 logger.exceptions.handle(
   new transports.File({
-    filename: path.join(__dirname, '../../logs', 'application.log')
+    filename: path.join(__dirname, '../../logs', 'app.log')
   })
 )
 
 logger.rejections.handle(
   new transports.File({
-    filename: path.join(__dirname, '../../logs', 'application.log')
+    filename: path.join(__dirname, '../../logs', 'app.log')
   })
 )
 
