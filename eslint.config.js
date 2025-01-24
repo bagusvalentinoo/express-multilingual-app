@@ -7,6 +7,9 @@ export default [
   {
     languageOptions: {
       ecmaVersion: 2021,
+      env: {
+        jest: true
+      },
       sourceType: 'module',
       globals: {
         ...globals.browser,

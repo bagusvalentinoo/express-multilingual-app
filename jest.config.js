@@ -1,12 +1,14 @@
 export default {
   testEnvironment: 'node',
-  transform: {},
-  extensionsToTreatAsEsm: ['.js'],
+  transform: {
+    '^.+\\.js$': 'babel-jest'
+  },
   testMatch: ['**/tests/**/*.test.js', '**/tests/**/*-test.js'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1'
   },
-  setupFiles: ['dotenv/config'], // Load environment variables
+  setupFiles: ['dotenv/config'],
+  verbose: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov']
