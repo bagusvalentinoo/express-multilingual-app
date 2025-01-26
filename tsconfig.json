@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2023", // Modern JavaScript output
+    "module": "ES2020", // CommonJS for Node.js
+    "moduleResolution": "node", // Use Node.js module resolution strategy
+    "lib": ["ES2023", "DOM"], // Include both ECMAScript and DOM libraries
+    "esModuleInterop": true, // Enable default imports for non-ESM modules
+    "skipLibCheck": true, // Skip type checking of declaration files for faster builds
+    "forceConsistentCasingInFileNames": true,
+    "strict": true, // Enable strict type checking
+    "noImplicitAny": true, // Disallow 'any' type
+    "strictNullChecks": true, // Ensure handling of null and undefined
+    "strictFunctionTypes": true, // Enforce strict function types
+    "noImplicitThis": true, // Disallow 'this' with an implicit type
+    "noUnusedLocals": true, // Flag unused local variables
+    "noUnusedParameters": true, // Flag unused function parameters
+    "noImplicitReturns": true, // Ensure all functions have return statements
+    "noFallthroughCasesInSwitch": true, // Prevent fall-through in switch cases
+    "outDir": "./dist", // Output directory for compiled JS
+    "removeComments": true, // Remove comments in output code
+    "resolveJsonModule": true, // Allow importing JSON files
+    "baseUrl": "./", // Base directory for non-relative module imports
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts" // Include all TypeScript files in the src folder
+  ],
+  "exclude": [
+    "coverage", // Exclude coverage folder
+    "dist", // Exclude compiled code
+    "docs", // Exclude documentation
+    "node_modules", // Exclude node_modules
+    "prisma", // Exclude Prisma files
+    "public", // Exclude public folder
+    "tests" // Exclude test files
+  ]
+}

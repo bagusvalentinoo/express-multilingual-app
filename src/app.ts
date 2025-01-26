@@ -1,17 +1,16 @@
 import express from 'express'
 
-import apiV1Router from './routes/api/v1/api-route.js'
-
-import requestMiddleware from './middlewares/request-middleware.js'
-import errorMiddleware from './middlewares/error-middleware.js'
+import { requestMiddleware } from '@/middlewares/request-middleware'
+import { errorMiddleware } from '@/middlewares/error-middleware'
+import apiV1Router from '@/routes/api/v1/api-route'
 
 // Create an Express application
 const app = express()
 
-// Middleware to parse JSON bodies
+// Middleware to parse JSON requests
 app.use(express.json())
 
-// Middleware to log each request
+// Middleware to log each incoming request
 app.use(requestMiddleware)
 
 // Routes

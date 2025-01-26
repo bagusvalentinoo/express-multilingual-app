@@ -16,8 +16,9 @@ You can try the live demo here:
 
 ## 🛠️ Technologies Used
 
-- <a href="https://nodejs.org/en/" target="_blank">Node.js</a>
+- <a href="https://bun.sh/" target="_blank">Bun.js</a>
 - <a href="https://expressjs.com/" target="_blank">Express.js</a>
+- <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
 
 ---
 
@@ -61,5 +62,6 @@ If you encounter any issues or have questions, feel free to [open an issue](http
 
 ## 📚 Resources
 
-- <a href="https://nodejs.org/en/" target="_blank">Node.js Documentation</a>
+- <a href="https://bun.sh/" target="_blank">Bun.js Documentation</a>
 - <a href="https://expressjs.com/" target="_blank">Express.js Documentation</a>
+- <a href="https://www.typescriptlang.org/" target="_blank">TypeScript Documentation</a>

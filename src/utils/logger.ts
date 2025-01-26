@@ -60,4 +60,5 @@ logger.rejections.handle(
   })
 )
 
+// Export the logger
 export default logger
