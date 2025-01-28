@@ -42,7 +42,13 @@ export default tseslint.config(
       '**/coverage/**',
       '**/dist/**',
       '**/logs/**',
-      '**/node_modules/**'
+      '**/node_modules/**',
+      '**/.gitignore',
+      '**/bun.lockb',
+      '**/yarn.lock',
+      '**/package-lock.json',
+      '**/LICENSE',
+      '**/README.md'
     ]
   },
   eslint.configs.recommended,

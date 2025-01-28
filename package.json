@@ -15,8 +15,11 @@
     "prettier:fix": "bunx prettier --write ."
   },
   "lint-staged": {
-    "./**/*": [
+    "./src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "./src/**/*.{json,css,scss,md}": [
       "prettier --write"
     ]
   },
