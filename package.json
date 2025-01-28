@@ -11,13 +11,13 @@
     "test:watch": "bun --watch test",
     "lint": "bunx eslint ./",
     "lint:fix": "bunx eslint ./ --fix",
-    "format": "bunx prettier --check .",
-    "format:fix": "bunx prettier --write .",
-    "prepare": "husky"
+    "prettier": "bunx prettier --check .",
+    "prettier:fix": "bunx prettier --write ."
   },
   "lint-staged": {
     "./**/*": [
-      "eslint --fix"
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "keywords": [
@@ -36,9 +36,11 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.10",
     "eslint": "^9.19.0",
+    "eslint-plugin-jsdoc": "^50.6.3",
     "eslint-plugin-prefer-arrow-functions": "^3.6.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
     "typescript-eslint": "^8.21.0"
   },
   "peerDependencies": {

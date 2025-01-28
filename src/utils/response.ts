@@ -2,17 +2,16 @@ import type { Response } from 'express'
 
 /**
  *
- * Response util function to send response to client
- *
- * @param {Response} res - Express Response
- * @param {Object} options - Options for response
- * @param {number} options.statusCode - HTTP status code
- * @param {string} options.message - Response message
- * @param {T} options.data - Response data
- * @param {K} options.errors - Response errors
- *
- * @returns {Response} - Express Response
- *
+ *Response util function to send response to client
+ * @template T - The type of response data.
+ * @template K - The type of response errors.
+ * @param {Response} res - The Express Response object.
+ * @param {object} options - Options for the response.
+ * @param {number} options.statusCode - The HTTP status code.
+ * @param {string} options.message - The response message.
+ * @param {T} options.data - The response data.
+ * @param {K} options.errors - The response errors.
+ * @returns {Response} - The Express Response object.
  */
 export const response = <T, K>(
   res: Response,

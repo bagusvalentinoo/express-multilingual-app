@@ -1,11 +1,13 @@
 import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import preferArrowFunctionsPlugin from 'eslint-plugin-prefer-arrow-functions'
+import jsdoc from 'eslint-plugin-jsdoc'
 
 export default tseslint.config(
   {
     plugins: {
-      'prefer-arrow-functions': preferArrowFunctionsPlugin
+      'prefer-arrow-functions': preferArrowFunctionsPlugin,
+      jsdoc
     },
     rules: {
       indent: ['error', 2],
@@ -32,9 +34,18 @@ export default tseslint.config(
           returnStyle: 'unchanged',
           singleReturnOnly: false
         }
-      ]
-    }
+      ],
+      'jsdoc/require-description': ['warn']
+    },
+    ignores: [
+      '**/.husky/**',
+      '**/coverage/**',
+      '**/dist/**',
+      '**/logs/**',
+      '**/node_modules/**'
+    ]
   },
   eslint.configs.recommended,
-  tseslint.configs.recommended
+  tseslint.configs.recommended,
+  jsdoc.configs['flat/recommended']
 )

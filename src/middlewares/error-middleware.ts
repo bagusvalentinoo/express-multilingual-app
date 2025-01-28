@@ -6,9 +6,7 @@ import { response } from '@/utils/response'
 
 /**
  * Handles errors and sends a formatted error response.
- *
  * @function errorMiddleware
- *
  * @param {Error} error - The error to be handled.
  * @param {Request} req - The Express request object.
  * @param {Response} res - The Express response object.
