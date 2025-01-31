@@ -1,20 +1,12 @@
 import { Router } from 'express'
-import type { Request, Response, NextFunction } from 'express'
 
-import { response } from '@/utils/response'
+import PubicRouter from '@/routes/api/v1/public'
 
-// Create a API v1 router
+// Create a API v1 Router
 const apiV1Router = Router()
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-apiV1Router.get('/', (_req: Request, res: Response, _next: NextFunction) => {
-  response(res, {
-    statusCode: 200,
-    message: 'Welcome to Express Multilingual App',
-    data: null,
-    errors: null
-  })
-})
+// Public Router
+apiV1Router.use('/', PubicRouter)
 
-// Export the API v1 router
+// Export the API v1 Router
 export default apiV1Router

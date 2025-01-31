@@ -1,27 +1,32 @@
 {
   "compilerOptions": {
     "target": "ES2023", // Modern JavaScript output
-    "module": "ES2020", // CommonJS for Node.js
-    "moduleResolution": "node", // Use Node.js module resolution strategy
-    "lib": ["ES2023", "DOM"], // Include both ECMAScript and DOM libraries
+    "module": "ESNext", // CommonJS for Node.js
+    "moduleResolution": "bundler", // Use Node.js module resolution strategy
     "esModuleInterop": true, // Enable default imports for non-ESM modules
     "skipLibCheck": true, // Skip type checking of declaration files for faster builds
-    "forceConsistentCasingInFileNames": true,
+    "types": ["bun-types"],
+    "forceConsistentCasingInFileNames": true, // Use consistent casing in file names
     "strict": true, // Enable strict type checking
     "noImplicitAny": true, // Disallow 'any' type
     "strictNullChecks": true, // Ensure handling of null and undefined
     "strictFunctionTypes": true, // Enforce strict function types
+    "strictBindCallApply": true, // Ensure bind, call, and apply are used correctly
+    "noUncheckedIndexedAccess": true, // Disallow unchecked indexed access
+    "exactOptionalPropertyTypes": true, // Ensure all optional property types are exact
     "noImplicitThis": true, // Disallow 'this' with an implicit type
     "noUnusedLocals": true, // Flag unused local variables
     "noUnusedParameters": true, // Flag unused function parameters
     "noImplicitReturns": true, // Ensure all functions have return statements
     "noFallthroughCasesInSwitch": true, // Prevent fall-through in switch cases
     "outDir": "./dist", // Output directory for compiled JS
+    "rootDir": "./src", // Root directory for source files
+    "noEmit": false, // Don't skip type checking
     "removeComments": true, // Remove comments in output code
     "resolveJsonModule": true, // Allow importing JSON files
     "baseUrl": "./", // Base directory for non-relative module imports
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"] // Map imports to source files
     }
   },
   "include": [

@@ -1,0 +1,8 @@
+{
+  "rate_limiter": {
+    "too_many_requests": "Too many requests, please try again later"
+  },
+  "cors": {
+    "not_allowed": "Not allowed by CORS"
+  }
+}

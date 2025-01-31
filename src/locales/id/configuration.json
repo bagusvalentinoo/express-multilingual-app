@@ -1,0 +1,8 @@
+{
+  "rate_limiter": {
+    "too_many_requests": "Terlalu banyak permintaan, silahkan coba lagi nanti"
+  },
+  "cors": {
+    "not_allowed": "Tidak diperbolehkan oleh CORS"
+  }
+}

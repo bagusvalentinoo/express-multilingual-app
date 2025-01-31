@@ -14,17 +14,15 @@ export default tseslint.config(
       quotes: ['error', 'single'],
       semi: ['error', 'never'],
       'comma-dangle': ['error', 'never'],
-      'max-len': ['error', { code: 80 }],
+      'max-len': ['error', { code: 100 }],
       'prefer-const': 'error',
       'no-console': 'error',
       'no-unused-vars': 'error',
       'no-var': 'error',
       'no-empty-function': 'error',
       'no-unreachable': 'error',
-      curly: ['error', 'multi-line'],
       'no-else-return': 'error',
       'object-curly-spacing': ['error', 'always'],
-      'nonblock-statement-body-position': ['error', 'beside'],
       'prefer-arrow-functions/prefer-arrow-functions': [
         'error',
         {
