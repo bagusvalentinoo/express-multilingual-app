@@ -33,9 +33,3 @@ export const response = <T, K>(
     errors
   })
 }
-
-export const test = (n: number) => {
-  if (n % 2 === 0) return true
-
-  return false
-}
