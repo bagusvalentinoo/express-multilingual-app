@@ -1,14 +1,15 @@
 import express from 'express'
-import helmet from 'helmet'
 import { join } from 'path'
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const middleware = require('i18next-http-middleware')
 
+import { helmetConfig } from '@/config/security/helmet-config'
 import i18next from '@/config/i18n/i18n-config'
 
 import { requestMiddleware } from '@/middlewares/request-middleware'
 import { errorMiddleware } from '@/middlewares/error-middleware'
 import apiV1Router from '@/routes/api/v1/api-route'
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const middleware = require('i18next-http-middleware')
 
 // Create an Express application
 const app = express()
@@ -17,7 +18,7 @@ const app = express()
 app.use(express.static(join('./public')))
 
 // Middleware to set security headers
-app.use(helmet())
+app.use(helmetConfig())
 
 // Middleware to parse JSON requests
 app.use(express.json())
