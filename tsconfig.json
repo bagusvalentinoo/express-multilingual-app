@@ -30,7 +30,8 @@
     }
   },
   "include": [
-    "src/**/*.ts" // Include all TypeScript files in the src folder
+    "src/**/*.ts", // Include all TypeScript files in the src folder
+    "eslint.config.mjs" // Include eslint config
   ],
   "exclude": [
     "coverage", // Exclude coverage folder

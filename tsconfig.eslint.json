@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json", // Extend the tsconfig.json file
+  "include": ["src/**/*.ts", "src/**/*.tsx", "eslint.config.mjs"], // Include the files to be linted
+  "exclude": ["node_modules", "dist"] // Exclude the node_modules and dist folders
+}
