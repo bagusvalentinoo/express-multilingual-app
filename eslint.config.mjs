@@ -100,7 +100,6 @@ export default tseslint.config(
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' } // Disallow unused variables with leading underscores
       ],
-      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'], // Enforce consistent type definitions
       '@typescript-eslint/consistent-type-imports': [
         // Enforce consistent type imports
         'error',
@@ -109,7 +108,6 @@ export default tseslint.config(
         }
       ],
       '@typescript-eslint/no-non-null-assertion': 'error', // Disallow non-null assertions
-      '@typescript-eslint/no-unnecessary-type-assertion': 'error', // Disallow unnecessary type assertions
       '@typescript-eslint/strict-boolean-expressions': 'error', // Enforce strict boolean expressions
       '@typescript-eslint/no-floating-promises': 'error', // Disallow floating promises
       '@typescript-eslint/await-thenable': 'error', // Disallow await thenable
