@@ -1,35 +1,46 @@
-import type { Response } from 'express'
+import type { HttpResponseFunction } from '@/types/http/response.type'
 
 /**
+ * Utility function to send standardized HTTP responses to client.
  *
- *Response util function to send response to client
- * @template T - The type of response data.
- * @template K - The type of response errors.
- * @param {Response} res - The Express Response object.
- * @param {object} options - Options for the response.
- * @param {number} options.statusCode - The HTTP status code.
- * @param {string} options.message - The response message.
- * @param {T} options.data - The response data.
- * @param {K} options.errors - The response errors.
- * @returns {Response} - The Express Response object.
+ * @param res - The Express Response object
+ * @param options - Response configuration options
+ * @returns Express Response object
+ *
+ * @example
+ * ```typescript
+ * response(res, {
+ *   statusCode: 200,
+ *   message: 'Success',
+ *   data: { id: 1, name: 'John' },
+ *   errors: null
+ * })
+ * ```
+ *
+ * @example
+ * ```typescript
+ * response(res, {
+ *   statusCode: 400,
+ *   message: 'Bad Request',
+ *   data: null,
+ *   errors: { message: 'Invalid request' }
+ * })
+ * ```
+ *
+ * @example
+ * ```typescript
+ * response(res, {
+ *   statusCode: 500,
+ *   message: 'Internal Server Error',
+ *   data: null,
+ *   errors: { message: 'An unexpected error occurred' }
+ * })
+ * ```
  */
-export const response = <T, K>(
-  res: Response,
-  {
-    statusCode,
-    message,
-    data,
-    errors
-  }: {
-    statusCode: number
-    message: string
-    data: T
-    errors: K
-  }
-): Response => {
-  return res.status(statusCode).json({
-    message,
-    data,
-    errors
+export const response: HttpResponseFunction = (res, options) => {
+  return res.status(options.statusCode).json({
+    message: options.message,
+    data: options.data,
+    errors: options.errors
   })
 }
