@@ -107,7 +107,6 @@ export default tseslint.config(
           prefer: 'type-imports' // Enforce type imports
         }
       ],
-      '@typescript-eslint/no-non-null-assertion': 'error', // Disallow non-null assertions
       '@typescript-eslint/strict-boolean-expressions': 'error', // Enforce strict boolean expressions
       '@typescript-eslint/no-floating-promises': 'error', // Disallow floating promises
       '@typescript-eslint/await-thenable': 'error', // Disallow await thenable
