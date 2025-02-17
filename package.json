@@ -12,7 +12,8 @@
     "lint": "bunx eslint ./",
     "lint:fix": "bunx eslint ./ --fix",
     "prettier": "bunx prettier --check .",
-    "prettier:fix": "bunx prettier --write ."
+    "prettier:fix": "bunx prettier --write .",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "./src/**/*.{js,jsx,ts,tsx}": [
