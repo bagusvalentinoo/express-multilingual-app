@@ -1,13 +1,12 @@
 /**
  * Class representing a formatted response error.
- * @class FormattedResponseError
- * @augments {Error}
  */
 export class FormattedResponseError extends Error {
   /**
    * Creates an instance of FormattedResponseError.
-   * @param {number} statusCode - HTTP status code of the error.
-   * @param {string} message - Error message.
+   *
+   * @param statusCode - HTTP status code of the error.
+   * @param message - Error message.
    */
   constructor(
     public statusCode: number,

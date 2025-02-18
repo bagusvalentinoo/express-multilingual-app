@@ -6,13 +6,25 @@ import {
   CORS_ORIGINS,
   CORS_ALLOWED_METHODS,
   CORS_ALLOWED_HEADERS
-} from '@/constant/config/security'
+} from '@/constants/config/security.constant'
 
+/**
+ * Configures the CORS middleware for the application.
+ *
+ * @returns {RequestHandler} The CORS middleware.
+ *
+ * @example
+ * ```typescript
+ * app.use(corsConfig())
+ * ```
+ */
 export const corsConfig = (): RequestHandler => {
   return cors({
     origin: (origin, callback) => {
       if (
-        !origin ||
+        origin === null ||
+        origin === undefined ||
+        origin === '' ||
         (CORS_ORIGINS as readonly string[]).includes(origin) ||
         process.env.NODE_ENV === 'development'
       ) {

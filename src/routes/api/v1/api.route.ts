@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 import PubicRouter from '@/routes/api/v1/public'
 
-// Create a API v1 Router
+// Create an API v1 Router
 const apiV1Router = Router()
 
 // Public Router

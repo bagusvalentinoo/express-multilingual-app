@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import ExampleRouter from '@/routes/api/v1/public/example-route'
+import ExampleRouter from '@/routes/api/v1/public/example.route'
 
 const publicRouter = Router()
 

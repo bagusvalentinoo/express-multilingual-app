@@ -1,6 +1,5 @@
 /**
- * An array of allowed CORS origins.
- * @type {ReadonlyArray<string>}
+ * The allowed origins
  */
 export const CORS_ORIGINS = [
   'http://localhost:3000',
@@ -8,8 +7,9 @@ export const CORS_ORIGINS = [
   'http://localhost:3002'
 ] as const
 
-export type CorsOrigin = (typeof CORS_ORIGINS)[number]
-
+/**
+ * The allowed methods
+ */
 export const CORS_ALLOWED_METHODS = [
   'GET',
   'POST',
@@ -18,8 +18,9 @@ export const CORS_ALLOWED_METHODS = [
   'DELETE'
 ] as const
 
-export type CorsAllowedMethod = (typeof CORS_ALLOWED_METHODS)[number]
-
+/**
+ * The allowed headers
+ */
 export const CORS_ALLOWED_HEADERS = [
   'Content-Type',
   'Authorization',
@@ -28,5 +29,3 @@ export const CORS_ALLOWED_HEADERS = [
   'X-CSRF-Token',
   'Accept-Language'
 ] as const
-
-export type CorsAllowedHeader = (typeof CORS_ALLOWED_HEADERS)[number]

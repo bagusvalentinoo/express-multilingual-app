@@ -4,6 +4,7 @@ import { t } from 'i18next'
 
 /**
  * Creates a rate limiter middleware for Express.
+ *
  * @param {number} windowMinutes - The time window in minutes for rate limiting.
  * @param {number} maxRequests - The maximum number of requests allowed in the time window.
  * @returns {RequestHandler} - The rate limiter middleware request handler.

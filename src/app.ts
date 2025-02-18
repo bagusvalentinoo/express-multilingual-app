@@ -1,12 +1,11 @@
 import express from 'express'
-import { join } from 'path'
 
-import { helmetConfig } from '@/config/security/helmet-config'
-import i18next from '@/config/i18n/i18n-config'
+import { helmetConfig } from '@/lib/security/helmet'
+import i18next from '@/lib/i18n/i18n'
 
-import { requestMiddleware } from '@/middlewares/request-middleware'
-import { errorMiddleware } from '@/middlewares/error-middleware'
-import apiV1Router from '@/routes/api/v1/api-route'
+import { requestMiddleware } from '@/middlewares/request.middleware'
+import { errorMiddleware } from '@/middlewares/error.middleware'
+import apiV1Router from '@/routes/api/v1/api.route'
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const middleware = require('i18next-http-middleware')
@@ -15,7 +14,7 @@ const middleware = require('i18next-http-middleware')
 const app = express()
 
 // Middleware to serve static files
-app.use(express.static(join('./public')))
+app.use(express.static('./public'))
 
 // Middleware to set security headers
 app.use(helmetConfig())
