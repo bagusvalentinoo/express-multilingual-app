@@ -1,0 +1,8 @@
+{
+  "400": "Bad Request: The server could not understand the request due to invalid syntax.",
+  "401": "Unauthorized: Authentication is required or has failed.",
+  "403": "Forbidden: You do not have permission to access this resource.",
+  "404": "Not Found: The requested resource could not be found.",
+  "500": "Internal Server Error: Something went wrong on the server.",
+  "default": "An unexpected error occurred. Please try again later."
+}

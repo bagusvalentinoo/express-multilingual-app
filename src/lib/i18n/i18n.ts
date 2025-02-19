@@ -1,6 +1,5 @@
 import i18next from 'i18next'
 import Backend from 'i18next-fs-backend'
-import { join } from 'path'
 
 import {
   SUPPORTED_LANGUAGES,
@@ -20,7 +19,7 @@ export default i18next.use(Backend).init({
     escapeValue: true
   },
   backend: {
-    loadPath: join('./src/locales', '{{lng}}', '{{ns}}.json')
+    loadPath: './src/locales/{{lng}}/{{ns}}.json'
   },
   fallbackLng: DEFAULT_LANGUAGE,
   preload: SUPPORTED_LANGUAGES
