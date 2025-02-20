@@ -115,6 +115,33 @@ export default tseslint.config(
       '@typescript-eslint/prefer-nullish-coalescing': 'error', // Enforce consistent use of nullish coalescing
       '@typescript-eslint/prefer-optional-chain': 'error', // Enforce consistent use of optional chaining
 
+      // eslint-plugin-import
+      'import/order': [
+        // Enforce consistent import order
+        'error',
+        {
+          groups: [
+            'builtin', // Builtin imports
+            'external', // External imports
+            'internal', // Internal imports
+            ['parent', 'sibling'], // Parent and sibling imports
+            'index' // Index imports
+          ],
+          pathGroups: [
+            {
+              pattern: '@/**', // Pattern for internal imports
+              group: 'internal' // Group for internal imports
+            }
+          ],
+          pathGroupsExcludedImportTypes: ['builtin'], // Excluded import types
+          alphabetize: {
+            order: 'asc', // Alphabetical order
+            caseInsensitive: true // Case insensitive
+          },
+          'newlines-between': 'always' // Newlines between
+        }
+      ],
+
       // eslint-plugin-jsdoc
       'jsdoc/check-access': 'error', // Enforce access checks
       'jsdoc/check-alignment': 'error', // Enforce alignment checks
@@ -281,7 +308,8 @@ export default tseslint.config(
       '**/yarn.lock', // Ignore yarn.lock files
       '**/package-lock.json', // Ignore package-lock.json files
       '**/LICENSE', // Ignore LICENSE files
-      '**/README.md' // Ignore README.md files
+      '**/README.md', // Ignore README.md files
+      'eslint.config.mjs' // Ignore eslint config
     ]
   },
   eslint.configs.recommended, // Enforce recommended eslint config
