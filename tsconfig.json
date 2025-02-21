@@ -5,7 +5,7 @@
     "moduleResolution": "bundler", // Use Node.js module resolution strategy
     "esModuleInterop": true, // Enable default imports for non-ESM modules
     "skipLibCheck": true, // Skip type checking of declaration files for faster builds
-    "types": ["bun-types"],
+    "types": ["bun-types"], // Specify custom type definitions
     "forceConsistentCasingInFileNames": true, // Use consistent casing in file names
     "strict": true, // Enable strict type checking
     "noImplicitAny": true, // Disallow 'any' type

@@ -6,6 +6,7 @@ import eslintPluginJsdoc from 'eslint-plugin-jsdoc'
 
 export default tseslint.config(
   {
+    files: ['**/*.ts', '**/*.tsx'],
     plugins: {
       import: eslintPluginImport, // Enforce import plugin
       'prefer-arrow-functions': eslintPluginPreferArrowFunctions, // Enforce prefer-arrow-functions plugin
