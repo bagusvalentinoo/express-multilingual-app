@@ -14,6 +14,14 @@ import logger from '@/lib/logger/winston'
  *   logError(error)
  * }
  * ```
+ *
+ * @example
+ * ```typescript
+ * logError(error, {
+ *   url: req.originalUrl,
+ *   method: req.method
+ * })
+ * ```
  */
 export const logError = (error: Error, context: object = {}) => {
   logger.error(error.message, {

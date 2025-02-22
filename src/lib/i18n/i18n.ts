@@ -8,9 +8,9 @@ import {
   DEFAULT_NAMESPACE
 } from '@/constants/config/i18n.constant'
 
-// Export the i18next instance
-export default i18next.use(Backend).init({
-  debug: process.env.NODE_ENV === 'development',
+// Initialize i18next
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+i18next.use(Backend).init({
   lng: DEFAULT_LANGUAGE,
   supportedLngs: SUPPORTED_LANGUAGES,
   ns: NAMESPACES,
@@ -24,3 +24,5 @@ export default i18next.use(Backend).init({
   fallbackLng: DEFAULT_LANGUAGE,
   preload: SUPPORTED_LANGUAGES
 })
+
+export default i18next
