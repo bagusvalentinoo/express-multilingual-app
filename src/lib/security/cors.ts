@@ -1,4 +1,3 @@
-import type { RequestHandler } from 'express'
 import cors from 'cors'
 import { t } from 'i18next'
 
@@ -11,33 +10,31 @@ import {
 /**
  * Configures the CORS middleware for the application.
  *
- * @returns {RequestHandler} The CORS middleware.
+ * @returns - An Express middleware function configured with CORS settings.
  *
  * @example
  * ```typescript
  * app.use(corsConfig())
  * ```
  */
-export const corsConfig = (): RequestHandler => {
-  return cors({
+export const corsConfig = () =>
+  cors({
     origin: (origin, callback) => {
+      // Allow specific origins
       if (
         origin === null ||
         origin === undefined ||
         origin === '' ||
         (CORS_ORIGINS as readonly string[]).includes(origin) ||
         process.env.NODE_ENV === 'development'
-      ) {
+      )
         callback(null, true)
-      } else {
-        callback(new Error(t('cors.not_allowed', { ns: 'configuration' })))
-      }
+      else callback(new Error(t('lib.cors.not_allowed', { ns: 'errors' })))
     },
-    methods: [...CORS_ALLOWED_METHODS],
-    allowedHeaders: [...CORS_ALLOWED_HEADERS],
-    credentials: true,
-    maxAge: 600,
-    preflightContinue: false,
-    optionsSuccessStatus: 204
+    methods: [...CORS_ALLOWED_METHODS], // Allow specific HTTP methods
+    allowedHeaders: [...CORS_ALLOWED_HEADERS], // Allow specific headers
+    credentials: true, // Enable credentials
+    maxAge: 600, // Set the maximum age of preflight requests
+    preflightContinue: false, // Disable preflight
+    optionsSuccessStatus: 204 // Set the status code for successful OPTIONS requests
   })
-}

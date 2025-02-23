@@ -1,8 +1,18 @@
 {
-  "400": "Permintaan Buruk: Server tidak dapat memahami permintaan karena sintaks tidak valid.",
-  "401": "Tidak Diizinkan: Diperlukan autentikasi atau autentikasi gagal.",
-  "403": "Dilarang: Anda tidak memiliki izin untuk mengakses sumber daya ini.",
-  "404": "Tidak Ditemukan: Sumber daya yang diminta tidak dapat ditemukan.",
-  "500": "Kesalahan Internal Server: Terjadi kesalahan pada server.",
-  "default": "Terjadi kesalahan tak terduga. Silakan coba lagi nanti."
+  "http": {
+    "400": "Permintaan Buruk: Server tidak dapat memahami permintaan karena sintaks tidak valid.",
+    "401": "Tidak Diizinkan: Diperlukan autentikasi atau autentikasi gagal.",
+    "403": "Dilarang: Anda tidak memiliki izin untuk mengakses sumber daya ini.",
+    "404": "Tidak Ditemukan: Sumber daya yang diminta tidak dapat ditemukan.",
+    "500": "Kesalahan Internal Server: Terjadi kesalahan pada server.",
+    "default": "Terjadi kesalahan tak terduga. Silakan coba lagi nanti."
+  },
+  "lib": {
+    "cors": {
+      "not_allowed": "Tidak diizinkan oleh CORS."
+    },
+    "rate-limiter": {
+      "too_many_requests": "Terlalu banyak permintaan, silahkan coba lagi nanti."
+    }
+  }
 }

@@ -41,6 +41,7 @@
     "@types/express": "^5.0.0",
     "@types/express-rate-limit": "^6.0.2",
     "@types/helmet": "^4.0.0",
+    "@types/morgan": "^1.9.9",
     "bun-types": "^1.2.1",
     "eslint": "^9.19.0",
     "eslint-plugin-import": "^2.31.0",
@@ -48,6 +49,7 @@
     "eslint-plugin-prefer-arrow-functions": "^3.6.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "morgan": "^1.10.0",
     "prettier": "^3.4.2",
     "tsc-alias": "^1.8.10",
     "typescript-eslint": "^8.21.0"

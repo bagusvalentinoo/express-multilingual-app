@@ -1,4 +1,3 @@
-import type { RequestHandler } from 'express'
 import rateLimit from 'express-rate-limit'
 import { t } from 'i18next'
 
@@ -7,21 +6,18 @@ import { t } from 'i18next'
  *
  * @param {number} windowMinutes - The time window in minutes for rate limiting.
  * @param {number} maxRequests - The maximum number of requests allowed in the time window.
+ *
  * @returns {RequestHandler} - The rate limiter middleware request handler.
  */
-
-const rateLimiter = (
-  windowMinutes: number,
-  maxRequests: number
-): RequestHandler => {
-  return rateLimit({
-    windowMs: windowMinutes * 60 * 1000,
-    max: maxRequests,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: t('rate_limiter.too_many_requests', { ns: 'configuration' }),
-    validate: { trustProxy: false }
+const rateLimiter = (windowMinutes: number, maxRequests: number) =>
+  rateLimit({
+    windowMs: windowMinutes * 60 * 1000, // Time window in milliseconds
+    max: maxRequests, // Maximum number of requests
+    standardHeaders: true, // Enable the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    message: t('lib.rate_limiter.too_many_requests', { ns: 'errors' }), // Custom error message
+    validate: { trustProxy: false } // Disable trust proxy
   })
-}
 
+// Export rate limiter for API requests
 export const apiLimiter = rateLimiter(15, 100)

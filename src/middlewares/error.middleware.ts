@@ -1,9 +1,11 @@
 import type { NextFunction, Request, Response } from 'express'
+import { t } from 'i18next'
 
-import logger from '@/utils/logger.util'
 import { FormattedResponseError } from '@/utils/formatted-response-error.util'
+import { logError } from '@/utils/logger.util'
 import { response } from '@/utils/response.util'
 
+// eslint-disable-next-line jsdoc/require-returns-check
 /**
  * Handles errors and sends a formatted error response.
  *
@@ -12,7 +14,7 @@ import { response } from '@/utils/response.util'
  * @param {Response} res The Express response object.
  * @param {NextFunction} _next The Express next middleware function.
  *
- * @returns A formatted error response.
+ * @returns The Express response object.
  *
  * @example
  * ```typescript
@@ -25,26 +27,27 @@ export const errorMiddleware = (
   res: Response,
   _next: NextFunction
 ) => {
-  // Log the error
-  logger.error(`Error occurred: ${error.message}`, {
-    method: req.method,
-    url: req.originalUrl,
-    stack: error.stack
-  })
+  let _statusCode = 500 // Default status code
+  let _message = t('http.default', { ns: 'errors' }) // Default error message
 
+  // Check if the error is an instance of FormattedResponseError
   if (error instanceof FormattedResponseError) {
-    return response(res, {
-      statusCode: error.statusCode,
-      message: error.message,
-      data: null,
-      errors: null
-    })
+    _statusCode = error.statusCode
+    _message = error.message
   }
 
-  return response(res, {
-    statusCode: 500,
-    message: error.message || 'Internal server error',
+  // Log the error
+  logError(error, {
+    method: req.method,
+    url: req.originalUrl
+  })
+
+  // Send a formatted error response
+  response(res, {
+    statusCode: _statusCode,
+    message: _message,
     data: null,
     errors: null
   })
+  return
 }

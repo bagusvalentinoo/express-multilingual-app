@@ -1,7 +1,6 @@
 /* eslint-disable quotes */
 
 import helmet from 'helmet'
-import type { RequestHandler } from 'express'
 
 /**
  * Configures security headers for Express applications using Helmet.
@@ -17,8 +16,8 @@ import type { RequestHandler } from 'express'
  * app.use(helmetConfig())
  * ```
  */
-export const helmetConfig = (): RequestHandler => {
-  return helmet({
+export const helmetConfig = () =>
+  helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"], // Allow resources only from the same origin
@@ -33,4 +32,3 @@ export const helmetConfig = (): RequestHandler => {
     crossOriginEmbedderPolicy: false, // Disable COEP for broader compatibility
     referrerPolicy: { policy: 'same-origin' } // Limit referrer information to same-origin requests
   })
-}

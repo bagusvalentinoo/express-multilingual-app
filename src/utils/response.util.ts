@@ -1,10 +1,11 @@
 import type { HttpResponseFunction } from '@/types/http/response.type'
 
 /**
- * Utility function to send standardized HTTP responses to client.
+ * Utility function to send standardized HTTP responses to clients.
  *
  * @param res - The Express Response object
  * @param options - Response configuration options
+ *
  * @returns Express Response object
  *
  * @example
@@ -37,10 +38,9 @@ import type { HttpResponseFunction } from '@/types/http/response.type'
  * })
  * ```
  */
-export const response: HttpResponseFunction = (res, options) => {
-  return res.status(options.statusCode).json({
+export const response: HttpResponseFunction = (res, options) =>
+  res.status(options.statusCode).json({
     message: options.message,
     data: options.data,
     errors: options.errors
   })
-}

@@ -5,7 +5,7 @@ export class FormattedResponseError extends Error {
   /**
    * Creates an instance of FormattedResponseError.
    *
-   * @param statusCode - HTTP status code of the error.
+   * @param statusCode - HTTP status code.
    * @param message - Error message.
    */
   constructor(

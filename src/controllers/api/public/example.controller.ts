@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from 'express'
 import { t } from 'i18next'
 
+import { logError } from '@/utils/logger.util'
 import { response } from '@/utils/response.util'
-import logger from '@/utils/logger.util'
 
 /**
  * Handles a GET request to /example
@@ -27,9 +27,10 @@ const index = async (_req: Request, res: Response, next: NextFunction) => {
       data: null,
       errors: null
     })
+    return
   } catch (error) {
     // Log the error
-    logger.error(error)
+    logError(error as Error)
 
     // Pass the error to the next middleware
     next(error)
