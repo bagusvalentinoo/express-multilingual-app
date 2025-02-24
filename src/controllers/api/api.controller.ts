@@ -4,8 +4,8 @@ import { t } from 'i18next'
 import { response } from '@/utils/response.util'
 
 /**
- * Handles a GET request to /example
- * 
+ * Handles a GET request to welcome API /
+ *
  * @param {Request} _req - The Express request object.
  * @param {Response} res - The Express response object.
  * @param {NextFunction} next - The Express next middleware function.
@@ -14,15 +14,15 @@ import { response } from '@/utils/response.util'
  *
  * @example
  * ```typescript
- * app.get('/example', ExampleController.index)
+ * app.get('/', ApiController.index)
  * ```
  */
 const index = async (_req: Request, res: Response, next: NextFunction) => {
   try {
-    // Send an example response
+    // Send an welcome response
     response(res, {
       statusCode: 200,
-      message: t('success', { ns: 'example' }),
+      message: t('welcome_success', { ns: 'common' }),
       data: null,
       errors: null
     })

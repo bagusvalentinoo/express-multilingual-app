@@ -6,6 +6,7 @@ import { corsConfig } from '@/lib/security/cors'
 import { helmetConfig } from '@/lib/security/helmet'
 import { apiLimiter } from '@/lib/security/rate-limiter'
 import { errorMiddleware } from '@/middlewares/error.middleware'
+import { localizationMiddleware } from '@/middlewares/localization.middleware'
 import apiV1Router from '@/routes/api/v1/api.route'
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -34,6 +35,9 @@ app.use(middleware.handle(i18next))
 
 // Middleware to limit API requests
 app.use(apiLimiter)
+
+// Middleware to handle localization
+app.use(localizationMiddleware)
 
 // Routes for API v1
 app.use('/api/v1', apiV1Router)
