@@ -4,6 +4,7 @@
     "401": "Unauthorized: Authentication is required or has failed.",
     "403": "Forbidden: You do not have permission to access this resource.",
     "404": "Not Found: The requested resource could not be found.",
+    "422": "Unprocessable Entity: The request could not be processed.",
     "500": "Internal Server Error: Something went wrong on the server.",
     "default": "An unexpected error occurred. Please try again later."
   },
