@@ -7,6 +7,11 @@ import { changeLanguage } from 'i18next'
  * @param {Request} req The Express request object.
  * @param {Response} _res The Express response object.
  * @param {NextFunction} next The Express next middleware function.
+ *
+ * @example
+ * ```typescript
+ * app.use(localizationMiddleware)
+ * ```
  */
 export const localizationMiddleware = (
   req: Request,

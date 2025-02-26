@@ -1,5 +1,5 @@
 import i18next from 'i18next'
-import Backend from 'i18next-fs-backend'
+import Backend, { type FsBackendOptions } from 'i18next-fs-backend'
 
 import {
   SUPPORTED_LANGUAGES,
@@ -10,7 +10,7 @@ import {
 
 // Initialize i18next
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-i18next.use(Backend).init({
+i18next.use(Backend).init<FsBackendOptions>({
   lng: DEFAULT_LANGUAGE,
   supportedLngs: SUPPORTED_LANGUAGES,
   ns: NAMESPACES,
