@@ -12,7 +12,7 @@
     "cors": {
       "not_allowed": "Tidak diizinkan oleh CORS."
     },
-    "rate-limiter": {
+    "rate_limiter": {
       "too_many_requests": "Terlalu banyak permintaan, silahkan coba lagi nanti."
     }
   }
