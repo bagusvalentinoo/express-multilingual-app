@@ -1,4 +1,8 @@
-import type { ZodType } from 'zod'
+import { t } from 'i18next'
+import type { ZodType, ZodIssue } from 'zod'
+
+import type { CustomZodErrorResponse } from '@/types/error/zod.type'
+import { parseLocalizationString } from '@/utils/i18n/i18n.util'
 
 /**
  * Validates data against a Zod schema
@@ -16,6 +20,28 @@ import type { ZodType } from 'zod'
  * const data = validate(userSchema, { name: 'John' })
  * ```
  */
-export const validate = <T>(schema: ZodType, data: T): T => {
-  return schema.parse(data)
-}
+export const validate = <T>(schema: ZodType, data: T): T => schema.parse(data)
+
+/**
+ * Custom format Zod error
+ *
+ * @param {ZodIssue[]} error - Zod error
+ *
+ * @returns {CustomZodErrorResponse[]} Custom Zod error response
+ *
+ * @example
+ * ```typescript
+ * const errors = customFormatZodError(error.issues as ZodIssue[])
+ * ```
+ */
+export const customFormatZodError = (
+  error: ZodIssue[]
+): CustomZodErrorResponse[] =>
+  error.map(issue => {
+    const { ns, key, params } = parseLocalizationString(issue.message)
+
+    return {
+      field: issue.path.join('.'),
+      message: t(key, { ns, ...params })
+    }
+  })

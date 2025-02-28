@@ -9,8 +9,8 @@ import type { Response } from 'express'
 export type HttpResponseOptions<T, E> = {
   statusCode: number
   message: string
-  data: T | null
-  errors: E | null
+  data: T
+  errors: E
 }
 
 /**
@@ -19,7 +19,7 @@ export type HttpResponseOptions<T, E> = {
  * @template T - The type of the response data.
  * @template E - The type of the response errors.
  */
-export type HttpResponseFunction<T = null, E = null> = (
+export type HttpResponseFunction<T = unknown, E = unknown> = (
   res: Response,
   options: HttpResponseOptions<T, E>
 ) => Response
