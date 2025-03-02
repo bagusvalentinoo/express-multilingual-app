@@ -25,4 +25,5 @@ i18next.use(Backend).init<FsBackendOptions>({
   preload: SUPPORTED_LANGUAGES
 })
 
+// Export the i18next instance
 export default i18next

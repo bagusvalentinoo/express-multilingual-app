@@ -30,6 +30,9 @@ app.use(helmetConfig())
 // Middleware to parse JSON requests
 app.use(express.json())
 
+// Middleware to parse URL-encoded requests
+app.use(express.urlencoded({ extended: true }))
+
 // Middleware to handle i18next localization multilingual
 app.use(middleware.handle(i18next))
 

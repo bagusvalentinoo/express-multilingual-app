@@ -147,7 +147,7 @@ const updateExampleById = async (
  *
  * @param {DeleteBatchExampleRequest} _req - The request body
  *
- * @returns {Promise<void>} - The deleted examples
+ * @returns {Promise<string[]>} - The deleted examples
  *
  * @example
  * ```typescript
@@ -156,15 +156,14 @@ const updateExampleById = async (
  */
 const deleteExampleBatch = async (
   _req: DeleteBatchExampleRequest
-): Promise<void> => {
+): Promise<string[]> => {
   // This is a dummy implementation
 
   // Validate the request body and get the validated data
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { ids } = validate(DELETE_BATCH, _req)
 
   // Delete the examples
-  return
+  return ids
 }
 
 // Export the example service
