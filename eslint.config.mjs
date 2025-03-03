@@ -78,6 +78,14 @@ export default tseslint.config(
       'no-dupe-else-if': 'error', // Disallow duplicate else if
       'no-duplicate-case': 'error', // Disallow duplicate case
       'no-duplicate-imports': 'warn', // Disallow duplicate imports
+      'no-restricted-imports': [
+        'error',
+        {
+          name: 'i18next',
+          message: 'Please import from `@/lib/i18n/i18n` instead.',
+          importNames: ['t']
+        }
+      ],
       eqeqeq: ['error', 'always'], // Enforce consistent use of === and !==
       'max-params': ['error', 4], // Enforce a maximum number of parameters
       'arrow-parens': ['error', 'as-needed'], // Enforce consistent use of parentheses
@@ -310,7 +318,8 @@ export default tseslint.config(
       '**/package-lock.json', // Ignore package-lock.json files
       '**/LICENSE', // Ignore LICENSE files
       '**/README.md', // Ignore README.md files
-      'eslint.config.mjs' // Ignore eslint config
+      'eslint.config.mjs', // Ignore eslint config
+      '**/tests/**' // Ignore tests files
     ]
   },
   eslint.configs.recommended, // Enforce recommended eslint config
