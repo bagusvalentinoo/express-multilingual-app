@@ -1,24 +1,48 @@
 {
   "required": "Oops, {{field}} cannot be empty",
-  "min": "Oops, {{field}} must be at least {{min}} characters",
-  "max": "Oops, {{field}} must be at most {{max}} characters",
-  "email": "Oops, {{field}} must be a valid email address",
-  "url": "Oops, {{field}} must be a valid URL",
+  "invalid_type": "Oops, {{field}} must be a valid value",
+  "boolean": "Oops, {{field}} must be a boolean",
   "number": "Oops, {{field}} must be a valid number",
   "array": "Oops, {{field}} must be an array",
   "object": "Oops, {{field}} must be an object",
-  "boolean": "Oops, {{field}} must be a boolean",
-  "date": "Oops, {{field}} must be a valid date",
-  "datetime": "Oops, {{field}} must be a valid datetime",
-  "enum": "Oops, {{field}} must be one of the following: {{values}}",
+
+  "alpha": "Oops, {{field}} must only contain letters",
+  "alphanumeric": "Oops, {{field}} must only contain letters and numbers",
+  "email": "Oops, {{field}} must be a valid email address",
+  "url": "Oops, {{field}} must be a valid URL",
+  "phone": "Oops, {{field}} must be a valid phone number",
+  "ip": "Oops, {{field}} must be a valid IP address",
   "uuid": "Oops, {{field}} must be a valid UUID",
   "regex": "Oops, {{field}} must match the following regex: {{regex}}",
-  "custom": "Oops, {{field}} is invalid",
+
+  "numeric": "Oops, {{field}} must only contain numbers",
+  "integer": "Oops, {{field}} must be an integer",
+  "decimal": "Oops, {{field}} must be a decimal number",
+
+  "min": "Oops, {{field}} must be at least {{min}} characters",
+  "max": "Oops, {{field}} must be at most {{max}} characters",
+  "between": "Oops, {{field}} must be between {{min}} and {{max}}",
+  "min_items": "Oops, at least {{min}} {{field}} must be selected",
+  "max_items": "Oops, {{field}} must not have more than {{max}} items",
+
+  "equal": "Oops, {{field}} must be equal to {{value}}",
+  "not_equal": "Oops, {{field}} must not be equal to {{value}}",
+  "matches": "Oops, {{field}} must match {{other}}",
+  "in": "Oops, {{field}} must be in the following: {{values}}",
+  "not_in": "Oops, {{field}} must not be in the following: {{values}}",
+  "enum": "Oops, {{field}} must be one of the following: {{values}}",
+
   "unique": "Oops, {{field}} must be unique",
   "exists": "Oops, {{field}} does not exist",
-  "notExists": "Oops, {{field}} already exists",
-  "notEqual": "Oops, {{field}} must not be equal to {{value}}",
-  "equal": "Oops, {{field}} must be equal to {{value}}",
-  "notIn": "Oops, {{field}} must not be in the following: {{values}}",
-  "in": "Oops, {{field}} must be in the following: {{values}}"
+  "not_exists": "Oops, {{field}} already exists",
+
+  "date": "Oops, {{field}} must be a valid date",
+  "datetime": "Oops, {{field}} must be a valid datetime",
+
+  "file_size": "Oops, {{field}} must not exceed {{size}}",
+  "file_type": "Oops, {{field}} must be one of these types: {{types}}",
+
+  "password_strength": "Oops, {{field}} must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+
+  "custom": "Oops, {{field}} is invalid"
 }

@@ -1,24 +1,48 @@
 {
   "required": "Oops, {{field}} tidak boleh kosong",
-  "min": "Oops, {{field}} harus memiliki minimal {{min}} karakter",
-  "max": "Oops, {{field}} harus memiliki maksimal {{max}} karakter",
-  "email": "Oops, {{field}} harus memiliki format email yang valid",
-  "url": "Oops, {{field}} harus memiliki format URL yang valid",
+  "invalid_type": "Oops, {{field}} harus memiliki nilai yang valid",
+  "boolean": "Oops, {{field}} harus memiliki format boolean yang valid",
   "number": "Oops, {{field}} harus memiliki format angka yang valid",
   "array": "Oops, {{field}} harus memiliki format array yang valid",
   "object": "Oops, {{field}} harus memiliki format object yang valid",
-  "boolean": "Oops, {{field}} harus memiliki format boolean yang valid",
-  "date": "Oops, {{field}} harus memiliki format tanggal yang valid",
-  "datetime": "Oops, {{field}} harus memiliki format waktu yang valid",
-  "enum": "Oops, {{field}} harus memiliki salah satu dari nilai berikut: {{values}}",
+
+  "alpha": "Oops, {{field}} hanya boleh berisi huruf",
+  "alphanumeric": "Oops, {{field}} hanya boleh berisi huruf dan angka",
+  "email": "Oops, {{field}} harus memiliki format email yang valid",
+  "url": "Oops, {{field}} harus memiliki format URL yang valid",
+  "phone": "Oops, {{field}} harus berupa nomor telepon yang valid",
+  "ip": "Oops, {{field}} harus berupa alamat IP yang valid",
   "uuid": "Oops, {{field}} harus memiliki format UUID yang valid",
   "regex": "Oops, {{field}} harus memenuhi regex berikut: {{regex}}",
-  "custom": "Oops, {{field}} tidak valid",
+
+  "numeric": "Oops, {{field}} hanya boleh berisi angka",
+  "integer": "Oops, {{field}} harus berupa bilangan bulat",
+  "decimal": "Oops, {{field}} harus berupa bilangan desimal",
+
+  "min": "Oops, {{field}} harus memiliki minimal {{min}} karakter",
+  "max": "Oops, {{field}} harus memiliki maksimal {{max}} karakter",
+  "between": "Oops, {{field}} harus berada di antara {{min}} dan {{max}}",
+  "min_items": "Oops, minimal {{min}} {{field}} harus dipilih",
+  "max_items": "Oops, {{field}} tidak boleh lebih dari {{max}} item",
+
+  "equal": "Oops, {{field}} harus sama dengan {{value}}",
+  "not_equal": "Oops, {{field}} tidak boleh sama dengan {{value}}",
+  "matches": "Oops, {{field}} harus sama dengan {{other}}",
+  "in": "Oops, {{field}} harus dalam daftar berikut: {{values}}",
+  "not_in": "Oops, {{field}} tidak boleh dalam daftar berikut: {{values}}",
+  "enum": "Oops, {{field}} harus memiliki salah satu dari nilai berikut: {{values}}",
+
   "unique": "Oops, {{field}} harus unik",
   "exists": "Oops, {{field}} tidak ada",
-  "notExists": "Oops, {{field}} sudah ada",
-  "notEqual": "Oops, {{field}} tidak boleh sama dengan {{value}}",
-  "equal": "Oops, {{field}} harus sama dengan {{value}}",
-  "notIn": "Oops, {{field}} tidak boleh dalam daftar berikut: {{values}}",
-  "in": "Oops, {{field}} harus dalam daftar berikut: {{values}}"
+  "not_exists": "Oops, {{field}} sudah ada",
+
+  "date": "Oops, {{field}} harus memiliki format tanggal yang valid",
+  "datetime": "Oops, {{field}} harus memiliki format waktu yang valid",
+
+  "file_size": "Oops, {{field}} tidak boleh melebihi {{size}}",
+  "file_type": "Oops, {{field}} harus berupa salah satu dari tipe berikut: {{types}}",
+
+  "password_strength": "Oops, {{field}} harus mengandung setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu karakter khusus",
+
+  "custom": "Oops, {{field}} tidak valid"
 }
