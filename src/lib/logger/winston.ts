@@ -64,16 +64,10 @@ const logger = createLogger({
     // Error log file
     new transports.File({
       ...commonTransportOptions,
-      filename: `${LOG_DIR}/error.log`,
+      filename: `${LOG_DIR}/application.log`,
       level: 'error',
       handleExceptions: true,
       handleRejections: true
-    }),
-
-    // Combined log file (all levels)
-    new transports.File({
-      ...commonTransportOptions,
-      filename: `${LOG_DIR}/combined.log`
     })
   ],
   // Don't exit on handled exceptions
@@ -87,7 +81,7 @@ if (!fs.existsSync(LOG_DIR)) fs.mkdirSync(LOG_DIR, { recursive: true })
 logger.exceptions.handle(
   new transports.File({
     ...commonTransportOptions,
-    filename: `${LOG_DIR}/exceptions.log`
+    filename: `${LOG_DIR}/application.log`
   })
 )
 
@@ -95,7 +89,7 @@ logger.exceptions.handle(
 logger.rejections.handle(
   new transports.File({
     ...commonTransportOptions,
-    filename: `${LOG_DIR}/rejections.log`
+    filename: `${LOG_DIR}/application.log`
   })
 )
 

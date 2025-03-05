@@ -11,19 +11,22 @@ import {
 // Initialize i18next
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 i18next.use(Backend).init<FsBackendOptions>({
-  lng: DEFAULT_LANGUAGE,
-  supportedLngs: SUPPORTED_LANGUAGES,
+  fallbackLng: DEFAULT_LANGUAGE,
+  preload: SUPPORTED_LANGUAGES,
   ns: NAMESPACES,
+  lng: DEFAULT_LANGUAGE,
   defaultNS: DEFAULT_NAMESPACE,
+  supportedLngs: SUPPORTED_LANGUAGES,
   interpolation: {
     escapeValue: true
   },
   backend: {
     loadPath: './src/locales/{{lng}}/{{ns}}.json'
-  },
-  fallbackLng: DEFAULT_LANGUAGE,
-  preload: SUPPORTED_LANGUAGES
+  }
 })
+
+// Export the t function
+export const { t } = i18next
 
 // Export the i18next instance
 export default i18next

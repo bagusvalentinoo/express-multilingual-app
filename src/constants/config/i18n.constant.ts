@@ -13,7 +13,7 @@ export const DEFAULT_LANGUAGE = 'en' as const
 /**
  * The namespaces
  */
-export const NAMESPACES: string[] = getNamespaces()
+export const NAMESPACES: string[] = getNamespaces(SUPPORTED_LANGUAGES)
 
 /**
  * The default namespace

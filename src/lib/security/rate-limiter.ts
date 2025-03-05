@@ -1,5 +1,6 @@
 import rateLimit from 'express-rate-limit'
-import { t } from 'i18next'
+
+import { t } from '@/lib/i18n/i18n'
 
 /**
  * Creates a rate limiter middleware for Express.

@@ -1,11 +1,11 @@
 import cors from 'cors'
-import { t } from 'i18next'
 
 import {
   CORS_ORIGINS,
   CORS_ALLOWED_METHODS,
   CORS_ALLOWED_HEADERS
 } from '@/constants/config/security.constant'
+import { t } from '@/lib/i18n/i18n'
 
 /**
  * Configures the CORS middleware for the application.
