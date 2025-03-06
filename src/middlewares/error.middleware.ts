@@ -1,11 +1,11 @@
 import type { NextFunction, Request, Response } from 'express'
-import { t } from 'i18next'
 import { ZodError } from 'zod'
 
+import { t } from '@/lib/i18n/i18n'
 import { FormattedResponseError } from '@/utils/formatted-response-error.util'
 import { logError } from '@/utils/logger.util'
-import { response } from '@/utils/response.util'
-import { customFormatZodError } from '@/utils/validation.util'
+import { responseError } from '@/utils/response.util'
+import { customFormatZodError } from '@/utils/validation/zod.util'
 
 // eslint-disable-next-line jsdoc/require-returns-check
 /**
@@ -41,17 +41,9 @@ export const errorMiddleware = (
 
   // Check if the error is an instance of ZodError
   if (error instanceof ZodError) {
-    try {
-      _statusCode = 422
-      _message = t('http.422', { ns: 'errors' })
-      _errors = customFormatZodError(error.issues)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      // If something goes wrong when formatting the ZodError, we fallback to the default error message
-      _statusCode = 500
-      _message = t('http.default', { ns: 'errors' })
-      _errors = null
-    }
+    _statusCode = 422
+    _message = t('http.422', { ns: 'errors' })
+    _errors = customFormatZodError(error.issues)
   }
 
   // Log the all error except ZodError validation error
@@ -62,10 +54,9 @@ export const errorMiddleware = (
     })
 
   // Send a formatted error response
-  response(res, {
+  responseError(res, {
     statusCode: _statusCode,
     message: _message,
-    data: null,
     errors: _errors
   })
   return

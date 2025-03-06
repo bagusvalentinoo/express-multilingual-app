@@ -1,12 +1,12 @@
 import type { Request, Response, NextFunction } from 'express'
-import { t } from 'i18next'
 
+import { t } from '@/lib/i18n/i18n'
 import ExampleService from '@/services/example/example.service'
 import type {
   CreateUpdateExampleRequest,
   DeleteBatchExampleRequest
 } from '@/types/model/example.type'
-import { response } from '@/utils/response.util'
+import { responseSuccess } from '@/utils/response.util'
 
 /**
  * Handles a GET request to /example
@@ -27,11 +27,10 @@ const index = async (_req: Request, res: Response, next: NextFunction) => {
     const examples = await ExampleService.getExamples() // Get the examples
 
     // Send an example response
-    response(res, {
+    responseSuccess(res, {
       statusCode: 200,
       message: t('get_data_success', { ns: 'resource', name: 'Examples' }),
-      data: examples,
-      errors: null
+      data: examples
     })
     return
   } catch (error) {
@@ -60,11 +59,10 @@ const store = async (req: Request, res: Response, next: NextFunction) => {
     const example = await ExampleService.createExample(request) // Create an example
 
     // Send a success response with the created example
-    response(res, {
+    responseSuccess(res, {
       statusCode: 201,
       message: t('create_data_success', { ns: 'resource', name: 'Example' }),
-      data: example,
-      errors: null
+      data: example
     })
     return
   } catch (error) {
@@ -92,11 +90,10 @@ const show = async (req: Request, res: Response, next: NextFunction) => {
     const example = await ExampleService.getExampleById(req.params.id as string) // Get the example
 
     // Send a success response with the example
-    response(res, {
+    responseSuccess(res, {
       statusCode: 200,
       message: t('get_data_success', { ns: 'resource', name: 'Example' }),
-      data: example,
-      errors: null
+      data: example
     })
     return
   } catch (error) {
@@ -126,11 +123,10 @@ const update = async (req: Request, res: Response, next: NextFunction) => {
       await ExampleService.updateExampleById(req.params.id as string, request) // Update the example
 
     // Send a success response with the updated example
-    response(res, {
+    responseSuccess(res, {
       statusCode: 200,
       message: t('update_data_success', { ns: 'resource', name: 'Example' }),
-      data: example,
-      errors: null
+      data: example
     })
     return
   } catch (error) {
@@ -164,11 +160,10 @@ const destroyBatch = async (
     ) // Delete the examples
 
     // Send a success response
-    response(res, {
+    responseSuccess(res, {
       statusCode: 200,
       message: t('delete_data_success', { ns: 'resource', name: 'Examples' }),
-      data: null,
-      errors: null
+      data: null
     })
     return
   } catch (error) {

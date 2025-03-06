@@ -19,8 +19,10 @@ export const localizationMiddleware = (
   next: NextFunction
 ) => {
   // Get the language from the header or query
-  const languageFromHeader = req.headers['accept-language'] as string
-  const languageFromQuery = req.query.lang as string
+  const languageFromHeader = (
+    req.headers['accept-language'] as string
+  )?.toLowerCase()
+  const languageFromQuery = (req.query.lang as string)?.toLowerCase()
 
   // Get the language from the header or query
   const language = languageFromHeader || languageFromQuery || 'en'

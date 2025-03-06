@@ -1,25 +1,38 @@
 import type { Response } from 'express'
 
 /**
- * Represents the options for an HTTP response.
+ * Represents the base options for an HTTP response.
  *
- * @template T - The type of the response data.
- * @template E - The type of the response errors.
+ * statusCode - The HTTP status code.
+ * message - The message to send to the client.
  */
-export type HttpResponseOptions<T, E> = {
+type BaseHttpResponseOptions = {
   statusCode: number
   message: string
-  data: T
-  errors: E
 }
 
 /**
- * Represents a function that returns an HTTP response.
+ * Represents a function that returns a successful HTTP response.
+ *
+ * res - The response object.
+ * options - The options for the response.
  *
  * @template T - The type of the response data.
- * @template E - The type of the response errors.
  */
-export type HttpResponseFunction<T = unknown, E = unknown> = (
+export type SuccessHttpResponseFunction<T = unknown> = (
   res: Response,
-  options: HttpResponseOptions<T, E>
+  options: BaseHttpResponseOptions & { data: T }
+) => Response
+
+/**
+ * Represents a function that returns an error HTTP response.
+ *
+ * res - The response object.
+ * options - The options for the response.
+ *
+ * @template T - The type of the response data.
+ */
+export type ErrorHttpResponseFunction<T = unknown> = (
+  res: Response,
+  options: BaseHttpResponseOptions & { errors: T }
 ) => Response

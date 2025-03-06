@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express'
-import { t } from 'i18next'
 
-import { response } from '@/utils/response.util'
+import { t } from '@/lib/i18n/i18n'
+import { responseSuccess } from '@/utils/response.util'
 
 /**
  * Handles a GET request to welcome API /
@@ -20,11 +20,10 @@ import { response } from '@/utils/response.util'
 const index = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     // Send an welcome response
-    response(res, {
+    responseSuccess(res, {
       statusCode: 200,
       message: t('welcome_success', { ns: 'common' }),
-      data: null,
-      errors: null
+      data: null
     })
     return
   } catch (error) {

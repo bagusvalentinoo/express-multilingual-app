@@ -1,9 +1,9 @@
 // This is a service just for dummy testing purposes
 
 import {
-  CREATE_UPDATE,
-  FIND,
-  DELETE_BATCH
+  createUpdateExampleSchema,
+  findExampleSchema,
+  deleteBatchExampleSchema
 } from '@/schemas/example/example.schema'
 import type {
   ExampleResponse,
@@ -12,7 +12,7 @@ import type {
   CreateUpdateExampleResponse,
   DeleteBatchExampleRequest
 } from '@/types/model/example.type'
-import { validate } from '@/utils/validation.util'
+import { validate } from '@/utils/validation/validation.util'
 
 /**
  * Get examples
@@ -60,7 +60,7 @@ const createExample = async (
   req: CreateUpdateExampleRequest
 ): Promise<CreateUpdateExampleResponse> => {
   // Validate the request body and get the validated data
-  const { key1, key2, key3 } = validate(CREATE_UPDATE, req)
+  const { key1, key2, key3 } = validate(createUpdateExampleSchema(), req)
 
   // Create the example
   return {
@@ -91,7 +91,7 @@ const getExampleById = async (
   id: string
 ): Promise<{ example: ExampleResponse }> => {
   // Validate the id and get the validated data
-  const validatedId = validate(FIND, id)
+  const validatedId = validate(findExampleSchema(), id)
 
   // Return the example
   return {
@@ -124,10 +124,10 @@ const updateExampleById = async (
   req: CreateUpdateExampleRequest
 ): Promise<CreateUpdateExampleResponse> => {
   // Validate the id and get the validated data
-  const validatedId = validate(FIND, id)
+  const validatedId = validate(findExampleSchema(), id)
 
   // Validate the request body and get the validated data
-  const { key1, key2, key3 } = validate(CREATE_UPDATE, req)
+  const { key1, key2, key3 } = validate(createUpdateExampleSchema(), req)
 
   // Update the example
   return {
@@ -145,7 +145,7 @@ const updateExampleById = async (
 /**
  * Delete a batch of examples
  *
- * @param {DeleteBatchExampleRequest} _req - The request body
+ * @param {DeleteBatchExampleRequest} req - The request body
  *
  * @returns {Promise<string[]>} - The deleted examples
  *
@@ -155,12 +155,12 @@ const updateExampleById = async (
  * ```
  */
 const deleteExampleBatch = async (
-  _req: DeleteBatchExampleRequest
+  req: DeleteBatchExampleRequest
 ): Promise<string[]> => {
   // This is a dummy implementation
 
   // Validate the request body and get the validated data
-  const { ids } = validate(DELETE_BATCH, _req)
+  const { ids } = validate(deleteBatchExampleSchema(), req)
 
   // Delete the examples
   return ids
