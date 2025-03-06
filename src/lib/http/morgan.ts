@@ -7,6 +7,11 @@ const env = process.env.NODE_ENV
 
 /**
  * Morgan middleware for logging HTTP requests
+ *
+ * @example
+ * ```typescript
+ * app.use(morganMiddleware)
+ * ```
  */
 export const morganMiddleware = morgan(
   env === 'development' ? 'dev' : 'combined',
