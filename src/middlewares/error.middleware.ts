@@ -31,19 +31,19 @@ export const errorMiddleware = (
 ) => {
   let _statusCode = 500 // Default status code
   let _message = t('http.default', { ns: 'errors' }) // Default error message
-  let _errors = null
+  let _errors = null // Default errors
 
   // Check if the error is an instance of FormattedResponseError
   if (error instanceof FormattedResponseError) {
-    _statusCode = error.statusCode
-    _message = error.message
+    _statusCode = error.statusCode // Set the status code
+    _message = error.message // Set the message
   }
 
   // Check if the error is an instance of ZodError
   if (error instanceof ZodError) {
-    _statusCode = 422
-    _message = t('http.422', { ns: 'errors' })
-    _errors = customFormatZodError(error.issues)
+    _statusCode = 422 // Set the status code
+    _message = t('http.422', { ns: 'errors' }) // Set the message for ZodError validation error
+    _errors = customFormatZodError(error.issues) // Set the errors for ZodError validation error
   }
 
   // Log the all error except ZodError validation error
