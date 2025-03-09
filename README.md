@@ -12,6 +12,11 @@ You can try the live demo here:
 
 ---
 
+## 📚 API Documentation
+
+
+---
+
 ## ✨ Key Features
 
 - Multilingual Support : Localization with i18next for dynamic language switching.
