@@ -1,13 +1,13 @@
 import { z, type ZodType } from 'zod'
 
+import {
+  requiredString,
+  requiredStringArray
+} from '@/schemas/validation/zod-base'
 import type {
   CreateUpdateExampleRequest,
   DeleteBatchExampleRequest
 } from '@/types/model/example.type'
-import {
-  requiredString,
-  requiredStringArray
-} from '@/utils/validation/zod.util'
 
 /**
  * Schema for creating or updating an example

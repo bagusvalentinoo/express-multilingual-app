@@ -12,7 +12,7 @@ import type {
   CreateUpdateExampleResponse,
   DeleteBatchExampleRequest
 } from '@/types/model/example.type'
-import { validate } from '@/utils/validation/validation.util'
+import { validate } from '@/utils/validation.util'
 
 /**
  * Get examples

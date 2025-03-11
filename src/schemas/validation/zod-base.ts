@@ -1,33 +1,10 @@
-import { z, type ZodIssue, type ZodType } from 'zod'
+import { z, type ZodType } from 'zod'
 
-import type { CustomZodErrorResponse } from '@/types/error/zod.type'
 import {
   getInvalidTypeErrorMessage,
   getMinItemsErrorMessage,
   getRequiredErrorMessage
-} from '@/utils/validation/validation-message.util'
-
-/**
- * Custom format Zod error
- *
- * @param {ZodIssue[]} error - Zod error
- *
- * @returns {CustomZodErrorResponse[]} Custom Zod error response
- *
- * @example
- * ```typescript
- * const errors = customFormatZodError(error.issues as ZodIssue[])
- * ```
- */
-export const customFormatZodError = (
-  error: ZodIssue[]
-): CustomZodErrorResponse[] =>
-  error.map(issue => {
-    return {
-      field: issue.path.join('.'),
-      message: issue.message
-    }
-  })
+} from '@/schemas/validation/messages'
 
 /**
  * Required string validation

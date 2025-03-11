@@ -24,7 +24,7 @@ export const responseSuccess: SuccessHttpResponseFunction = (res, options) =>
   res.status(options.statusCode).json({
     status: 'success',
     message: options.message,
-    data: options.data
+    data: options.data ?? null
   })
 
 /**
@@ -86,5 +86,5 @@ export const responseError: ErrorHttpResponseFunction = (res, options) =>
   res.status(options.statusCode).json({
     status: 'error',
     message: options.message,
-    errors: options.errors
+    errors: options.errors ?? null
   })

@@ -5,7 +5,7 @@ import { t } from '@/lib/i18n/i18n'
 import { FormattedResponseError } from '@/utils/formatted-response-error.util'
 import { logError } from '@/utils/logger.util'
 import { responseError } from '@/utils/response.util'
-import { customFormatZodError } from '@/utils/validation/zod.util'
+import { customFormatZodError } from '@/utils/validation.util'
 
 // eslint-disable-next-line jsdoc/require-returns-check
 /**

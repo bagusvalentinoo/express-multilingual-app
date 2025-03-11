@@ -1,4 +1,4 @@
-import { getNamespaces } from '@/utils/i18n/i18n.util'
+import { getNamespaces } from '@/utils/i18n.util'
 
 /**
  * Supported language codes as read-only array
