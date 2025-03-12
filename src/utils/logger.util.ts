@@ -23,11 +23,24 @@ import logger from '@/lib/logger/winston'
  * })
  * ```
  */
-export const logError = (error: Error, context: object = {}) => {
-  logger.error(error.message, {
-    ...context,
-    stack: error.stack
-  })
+export const logError = (
+  error: Error | string | null,
+  context: object = {}
+) => {
+  if (error instanceof Error) {
+    logger.error(error.message, {
+      ...context,
+      stack: error.stack
+    })
+  } else if (typeof error === 'string') {
+    logger.error(error, {
+      ...context
+    })
+  } else {
+    logger.error('Unknown error', {
+      ...context
+    })
+  }
 }
 
 /**
