@@ -32,9 +32,9 @@ const getExamples = async (): Promise<GetExamplesResponse> => {
     // Generate the example
     return {
       id: crypto.randomUUID(),
-      key1: `key${baseIndex}`,
-      key2: `key${baseIndex + 1}`,
-      key3: `key${baseIndex + 2}`,
+      key1: `Key ${baseIndex}`,
+      key2: `Key ${baseIndex + 1}`,
+      key3: `Key ${baseIndex + 2}`,
       created_at: new Date(),
       updated_at: new Date()
     }
@@ -97,9 +97,9 @@ const getExampleById = async (
   return {
     example: {
       id: validatedId,
-      key1: 'key1',
-      key2: 'key2',
-      key3: 'key3',
+      key1: 'Key 1',
+      key2: 'Key 2',
+      key3: 'Key 3',
       created_at: new Date(),
       updated_at: new Date()
     }
