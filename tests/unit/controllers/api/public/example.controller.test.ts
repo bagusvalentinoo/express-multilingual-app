@@ -1,5 +1,4 @@
-// ~/test/controllers/api/public/example.controller.test.ts
-import { describe, test, expect, mock } from 'bun:test'
+import { describe, it, expect, mock } from 'bun:test'
 import type { Request, Response, NextFunction } from 'express'
 import ExampleController from '../../../../../src/controllers/api/public/example.controller'
 import ExampleService from '../../../../../src/services/example/example.service'
@@ -29,22 +28,22 @@ const createExampleResponse = (overrides?: Partial<ExampleResponse>) => ({
     name: 'Test Example',
     ...overrides
   }
-});
+})
 
 const createExampleListResponse = (items = 1): ExampleListResponse => ({
   examples: Array.from({ length: items }, (_, i) => ({
     id: `${i+1}`,
     name: `Example ${i+1}`
   }))
-});
+})
 
 // Test data
-const mockExampleResponse = createExampleResponse();
-const mockExampleListResponse = createExampleListResponse(2);
+const mockExampleResponse = createExampleResponse()
+const mockExampleListResponse = createExampleListResponse(2)
 
 describe('ExampleController', () => {
   describe('index', () => {
-    test('should return 200 with example list', async () => {
+    it('should return 200 with example list', async () => {
       // Arrange
       ExampleService.getExamples = mock(() => Promise.resolve(mockExampleListResponse))
       
@@ -55,7 +54,7 @@ describe('ExampleController', () => {
       expect(ExampleService.getExamples).toHaveBeenCalled()
     })
 
-    test('should handle service errors', async () => {
+    it('should handle service errors', async () => {
       // Arrange
       const error = new Error('Database failure')
       ExampleService.getExamples = mock(() => Promise.reject(error))
@@ -70,7 +69,7 @@ describe('ExampleController', () => {
   })
 
   describe('store', () => {
-    test('should create new example with valid payload', async () => {
+    it('should create new example with valid payload', async () => {
       // Arrange
       const payload = { name: 'New Example' }
       ExampleService.createExample = mock(() => 
@@ -85,7 +84,7 @@ describe('ExampleController', () => {
       expect(ExampleService.createExample).toHaveBeenCalledWith(payload)
     })
 
-    test('should reject invalid payloads', async () => {
+    it('should reject invalid payloads', async () => {
       // Arrange
       const req = mockRequest({ 
         body: { invalid: 'data' } 
@@ -106,7 +105,7 @@ describe('ExampleController', () => {
   })
 
   describe('show', () => {
-    test('should fetch example by ID', async () => {
+    it('should fetch example by ID', async () => {
       // Arrange
       ExampleService.getExampleById = mock(() => 
         Promise.resolve(mockExampleResponse)
@@ -120,7 +119,7 @@ describe('ExampleController', () => {
       expect(ExampleService.getExampleById).toHaveBeenCalledWith('1')
     })
 
-    test('should handle invalid IDs', async () => {
+    it('should handle invalid IDs', async () => {
       // Arrange
       const req = mockRequest({ params: { id: 'invalid' } })
       const next = mock(() => {})
@@ -139,7 +138,7 @@ describe('ExampleController', () => {
   })
 
   describe('update', () => {
-    test('should update existing example', async () => {
+    it('should update existing example', async () => {
       // Arrange
       const payload = { name: 'Updated Example' }
       ExampleService.updateExampleById = mock(() => 
@@ -159,35 +158,35 @@ describe('ExampleController', () => {
   })
 
   describe('destroyBatch', () => {
-    test('should delete multiple examples', async () => {
+    it('should delete multiple examples', async () => {
       // Arrange
-      const mockDeletedIds = ['1', '2'];
+      const mockDeletedIds = ['1', '2']
       ExampleService.deleteExampleBatch = mock(() => 
         Promise.resolve(mockDeletedIds)
-      );
-      const payload = { ids: ['1', '2'] };
-      const req = mockRequest({ body: payload });
+      )
+      const payload = { ids: ['1', '2'] }
+      const req = mockRequest({ body: payload })
 
       // Act
-      await ExampleController.destroyBatch(req, mockResponse(), mockNext);
+      await ExampleController.destroyBatch(req, mockResponse(), mockNext)
 
       // Assert
-      expect(ExampleService.deleteExampleBatch).toHaveBeenCalledWith(payload);
-    });
+      expect(ExampleService.deleteExampleBatch).toHaveBeenCalledWith(payload)
+    })
 
-    test('should handle empty batch delete', async () => {
+    it('should handle empty batch delete', async () => {
       // Arrange
       ExampleService.deleteExampleBatch = mock(() => 
         Promise.reject(new Error('Invalid batch request'))
-      );
-      const req = mockRequest({ body: { ids: [] } });
-      const next = mock(() => {});
+      )
+      const req = mockRequest({ body: { ids: [] } })
+      const next = mock(() => {})
 
       // Act
-      await ExampleController.destroyBatch(req, mockResponse(), next);
+      await ExampleController.destroyBatch(req, mockResponse(), next)
 
       // Assert
-      expect(next).toHaveBeenCalledWith(expect.any(Error));
-    });
-  });
+      expect(next).toHaveBeenCalledWith(expect.any(Error))
+    })
+  })
 })
