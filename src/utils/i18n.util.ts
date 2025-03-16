@@ -28,3 +28,19 @@ export const getNamespaces = (
   // Deduplicate and sort the namespaces
   return Array.from(new Set(allNamespaces)).sort()
 }
+
+/**
+ * Parses the language header to get the primary language.
+ *
+ * @param {string} header - The language header string.
+ *
+ * @returns {string | null} The primary language code or null if no language is found.
+ */
+export const parseLanguageHeader = (header: string) => {
+  const languages = header.split(',').map(lang => {
+    const [code] = lang.split(';')
+    return code?.trim().toLowerCase()
+  })
+
+  return languages[0] ?? null
+}

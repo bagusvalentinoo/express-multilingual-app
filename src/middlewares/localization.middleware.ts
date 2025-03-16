@@ -1,12 +1,14 @@
 import type { Request, Response, NextFunction } from 'express'
 import { changeLanguage } from 'i18next'
 
+import { parseLanguageHeader } from '@/utils/i18n.util'
+
 /**
- * Middleware to change the language of the request
+ * Middleware to handle request localization
  *
- * @param {Request} req The Express request object.
- * @param {Response} _res The Express response object.
- * @param {NextFunction} next The Express next middleware function.
+ * @param {Request} req - Express request object
+ * @param {Response} _res - Express response object
+ * @param {NextFunction} next - Express next function
  *
  * @example
  * ```typescript
@@ -18,17 +20,24 @@ export const localizationMiddleware = (
   _res: Response,
   next: NextFunction
 ) => {
-  // Get the language from the header or query
-  const languageFromHeader = (
-    req.headers['accept-language'] as string
-  )?.toLowerCase()
-  const languageFromQuery = (req.query.lang as string)?.toLowerCase()
+  // Ensure headerLang is explicitly checked for null or undefined
+  const headerLang = req.headers['accept-language']
+  const languageFromHeader =
+    typeof headerLang === 'string' && headerLang.trim() !== ''
+      ? parseLanguageHeader(headerLang.trim())
+      : null
 
-  // Get the language from the header or query
-  const language = languageFromHeader || languageFromQuery || 'en'
+  // Ensure queryLang is explicitly checked for null or undefined
+  const queryLang = req.query.lang
+  const languageFromQuery =
+    typeof queryLang === 'string' && queryLang.trim() !== ''
+      ? queryLang.trim().toLowerCase()
+      : null
 
-  // Change the language
+  // Use nullish coalescing operator (??) for safer fallback handling
+  const language = languageFromHeader ?? languageFromQuery ?? 'en'
+
   changeLanguage(language)
-    .then(() => next()) // Call the next middleware
-    .catch(error => next(error)) // Call the next middleware with the error
+    .then(() => next())
+    .catch(error => next(error))
 }
