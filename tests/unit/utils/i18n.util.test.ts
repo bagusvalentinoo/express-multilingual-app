@@ -1,97 +1,133 @@
-import { describe, it, expect, mock, jest, beforeEach } from 'bun:test'
-import { existsSync, readdirSync } from 'fs'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { describe, it, expect, mock, beforeEach } from 'bun:test'
+import {
+  getNamespaces,
+  parseLanguageHeader
+} from '../../../src/utils/i18n.util'
 
-import { getNamespaces } from '../../../src/utils/i18n.util'
+const mockFs = {
+  existsSync: mock((_path: string) => false),
+  readdirSync: mock((_path: string) => [] as string[])
+}
 
-mock.module('fs', () => ({
-  existsSync: jest.fn(),
-  readdirSync: jest.fn()
-}))
+mock.module('fs', () => mockFs)
 
-describe('getNamespaces', () => {
+describe('i18n Utility Functions', () => {
+  const testFiles = [
+    'common.json',
+    'errors.json',
+    'resource.json',
+    'validation.json'
+  ]
+
   beforeEach(() => {
-    // Reset all mocks before each test
-    jest.clearAllMocks()
+    mockFs.existsSync.mockReset()
+    mockFs.readdirSync.mockReset()
   })
 
-  it('should return sorted and deduplicated namespaces for supported languages', () => {
-    // Mock the file system
-    ;(existsSync as jest.Mock).mockImplementation((path: string) => {
-      return path === './src/locales/en' || path === './src/locales/id'
-    })
-    ;(readdirSync as jest.Mock).mockImplementation((path: string) => {
-      if (path === './src/locales/en')
-        return [
-          'common.json',
-          'errors.json',
-          'resource.json',
-          'validation.json'
-        ]
-      if (path === './src/locales/id')
-        return [
-          'common.json',
-          'errors.json',
-          'resource.json',
-          'validation.json'
-        ]
+  describe('getNamespaces', () => {
+    describe('when locales exist', () => {
+      it('returns deduplicated sorted namespaces for supported languages', () => {
+        mockFs.existsSync.mockImplementation(
+          (path: string) =>
+            path === './src/locales/en' || path === './src/locales/id'
+        )
 
-      return []
-    })
+        mockFs.readdirSync.mockImplementation((path: string) =>
+          path === './src/locales/en' || path === './src/locales/id'
+            ? testFiles
+            : []
+        )
 
-    const supportedLanguages = ['en', 'id']
-    const result = getNamespaces(supportedLanguages)
+        expect(getNamespaces(['en', 'id'])).toEqual([
+          'common',
+          'errors',
+          'resource',
+          'validation'
+        ])
+      })
 
-    expect(result).toEqual(['common', 'errors', 'resource', 'validation'])
-  })
+      it('ignores unsupported languages', () => {
+        mockFs.existsSync.mockImplementation(
+          (path: string) => path === './src/locales/en'
+        )
 
-  it('should return an empty array if no supported languages are provided', () => {
-    const supportedLanguages: string[] = []
-    const result = getNamespaces(supportedLanguages)
+        mockFs.readdirSync.mockImplementation((path: string) =>
+          path === './src/locales/en' ? testFiles : []
+        )
 
-    expect(result).toEqual([])
-  })
-
-  it('should return an empty array if no JSON files are found in the locales directory', () => {
-    // Mock the file system
-    ;(existsSync as jest.Mock).mockReturnValue(true)
-    ;(readdirSync as jest.Mock).mockReturnValue([])
-
-    const supportedLanguages = ['en']
-    const result = getNamespaces(supportedLanguages)
-
-    expect(result).toEqual([])
-  })
-
-  it('should ignore unsupported languages', () => {
-    // Mock the file system
-    ;(existsSync as jest.Mock).mockImplementation((path: string) => {
-      return path === './src/locales/en'
-    })
-    ;(readdirSync as jest.Mock).mockImplementation((path: string) => {
-      if (path === './src/locales/en')
-        return [
-          'common.json',
-          'errors.json',
-          'resource.json',
-          'validation.json'
-        ]
-
-      return []
+        expect(getNamespaces(['en', 'fr'])).toEqual([
+          'common',
+          'errors',
+          'resource',
+          'validation'
+        ])
+      })
     })
 
-    const supportedLanguages = ['en', 'fr'] // 'fr' is unsupported
-    const result = getNamespaces(supportedLanguages)
+    describe('edge cases', () => {
+      it('returns empty array for no supported languages', () =>
+        expect(getNamespaces([])).toEqual([]))
 
-    expect(result).toEqual(['common', 'errors', 'resource', 'validation'])
+      it('returns empty array when no JSON files found', () => {
+        mockFs.existsSync.mockImplementation(() => true)
+        mockFs.readdirSync.mockImplementation(() => [])
+
+        expect(getNamespaces(['en'])).toEqual([])
+      })
+
+      it('handles missing locale directories gracefully', () => {
+        mockFs.existsSync.mockImplementation(() => false)
+
+        expect(getNamespaces(['en', 'id'])).toEqual([])
+      })
+    })
   })
 
-  it('should handle missing locale directories gracefully', () => {
-    // Mock the file system
-    ;(existsSync as jest.Mock).mockReturnValue(false)
+  describe('parseLanguageHeader', () => {
+    it('should return the primary language from a single language header', () => {
+      const header = 'en-US'
+      expect(parseLanguageHeader(header)).toBe('en-us')
+    })
 
-    const supportedLanguages = ['en', 'id']
-    const result = getNamespaces(supportedLanguages)
+    it('should return the primary language from a complex language header', () => {
+      const header = 'fr-CH, fr;q=0.9, en;q=0.8'
+      expect(parseLanguageHeader(header)).toBe('fr-ch')
+    })
 
-    expect(result).toEqual([])
+    it('should handle whitespace in the header', () => {
+      const header = '  es-MX , en;q=0.8 '
+      expect(parseLanguageHeader(header)).toBe('es-mx')
+    })
+
+    it('should return null for an empty header', () => {
+      const header = ''
+      expect(parseLanguageHeader(header)).toBeNull()
+    })
+
+    it('should return null for a malformed header', () => {
+      const header = ',,,'
+      expect(parseLanguageHeader(header)).toBeNull()
+    })
+
+    it('should handle headers with no quality values', () => {
+      const header = 'de-DE, en'
+      expect(parseLanguageHeader(header)).toBe('de-de')
+    })
+
+    it('should handle headers with only quality values', () => {
+      const header = 'en;q=1.0, fr;q=0.9'
+      expect(parseLanguageHeader(header)).toBe('en')
+    })
+
+    it('should handle uppercase language codes', () => {
+      const header = 'ZH-TW, en;q=0.8'
+      expect(parseLanguageHeader(header)).toBe('zh-tw')
+    })
+
+    it('should handle nullish input gracefully', () => {
+      const header = null as unknown as string
+      expect(parseLanguageHeader(header)).toBeNull()
+    })
   })
 })

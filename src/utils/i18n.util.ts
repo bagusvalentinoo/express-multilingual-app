@@ -37,10 +37,18 @@ export const getNamespaces = (
  * @returns {string | null} The primary language code or null if no language is found.
  */
 export const parseLanguageHeader = (header: string) => {
-  const languages = header.split(',').map(lang => {
-    const [code] = lang.split(';')
-    return code?.trim().toLowerCase()
-  })
+  // Check if header is not a string or is empty
+  if (!header || typeof header !== 'string' || header.trim() === '') return null
 
-  return languages[0] ?? null
+  // Split the header by commas and map over the languages
+  const languages = header
+    .split(',')
+    .map(lang => {
+      const [code] = lang.split(';')
+      return code?.trim().toLowerCase()
+    })
+    .filter(Boolean)
+
+  // Return the first language if there are any, otherwise return null
+  return languages.length > 0 ? languages[0] : null
 }
