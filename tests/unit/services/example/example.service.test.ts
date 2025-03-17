@@ -2,7 +2,7 @@ import { describe, it, expect } from 'bun:test'
 
 import ExampleService from '../../../../src/services/example/example.service'
 
-describe('Example Service', () => {
+describe('ExampleService', () => {
   describe('getExamples', () => {
     it('should return an array of examples', async () => {
       const result = await ExampleService.getExamples()

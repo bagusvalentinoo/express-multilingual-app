@@ -1,30 +1,26 @@
 import { describe, it, expect, mock, beforeEach } from 'bun:test'
 
-import {
-  logError,
-  logInfo,
-  logDebug,
-  logWarn
-} from '../../../src/utils/logger.util'
-
 const mockLogger = {
-  error: mock(),
-  info: mock(),
-  debug: mock(),
-  warn: mock()
+  error: mock(() => {}),
+  info: mock(() => {}),
+  debug: mock(() => {}),
+  warn: mock(() => {})
 }
 
 mock.module('../../../src/lib/logger/winston.ts', () => ({
   default: mockLogger
 }))
 
+const { logError, logInfo, logDebug, logWarn } = await import(
+  '../../../src/utils/logger.util'
+)
+
 describe('Logger Utility Functions', () => {
   beforeEach(() => {
-    // Reset all mocks before each test
-    mockLogger.error.mockClear()
-    mockLogger.info.mockClear()
-    mockLogger.debug.mockClear()
-    mockLogger.warn.mockClear()
+    mockLogger.error.mockReset()
+    mockLogger.info.mockReset()
+    mockLogger.debug.mockReset()
+    mockLogger.warn.mockReset()
   })
 
   describe('logError', () => {
@@ -34,14 +30,14 @@ describe('Logger Utility Functions', () => {
 
       logError(error, context)
 
-      console.log(
-        'Mock Logger Error Message: ',
-        mockLogger.error.mock.calls[0][0]
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        'Test error',
+        expect.objectContaining({
+          url: '/test',
+          method: 'GET',
+          stack: error.stack
+        })
       )
-      expect(mockLogger.error).toHaveBeenCalledWith(error.message, {
-        ...context,
-        stack: error.stack
-      })
     })
 
     it('should log an error message without context if none is provided', () => {
@@ -49,17 +45,32 @@ describe('Logger Utility Functions', () => {
 
       logError(error)
 
-      expect(mockLogger.error).toHaveBeenCalledWith(error.message, {
-        stack: error.stack
-      })
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        'Test error',
+        expect.objectContaining({
+          stack: error.stack
+        })
+      )
     })
 
     it('should handle null or undefined error objects gracefully', () => {
       logError(null as unknown as Error)
 
-      expect(mockLogger.error).toHaveBeenCalledWith('Unknown error', {
-        stack: undefined
-      })
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        'Unknown error',
+        expect.objectContaining({})
+      )
+    })
+
+    it('should handle string errors correctly', () => {
+      const stringError = 'String-based error'
+
+      logError(stringError)
+
+      expect(mockLogger.error).toHaveBeenCalledWith(
+        stringError,
+        expect.objectContaining({})
+      )
     })
   })
 

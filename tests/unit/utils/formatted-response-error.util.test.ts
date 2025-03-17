@@ -10,7 +10,7 @@ describe('FormattedResponseError', () => {
 
     expect(error.statusCode).toBe(statusCode)
     expect(error.message).toBe(message)
-    expect(error).toBeInstanceOf(Error) // Ensure it inherits from Error
+    expect(error).toBeInstanceOf(Error)
   })
 
   it('should create an instance with a default message if none is provided', () => {
@@ -18,12 +18,12 @@ describe('FormattedResponseError', () => {
     const error = new FormattedResponseError(statusCode, '')
 
     expect(error.statusCode).toBe(statusCode)
-    expect(error.message).toBe('') // Default message is empty
+    expect(error.message).toBe('')
     expect(error).toBeInstanceOf(Error)
   })
 
   it('should handle non-standard status codes', () => {
-    const statusCode = 299 // Non-standard status code
+    const statusCode = 299
     const message = 'Custom status code'
     const error = new FormattedResponseError(statusCode, message)
 
@@ -34,7 +34,7 @@ describe('FormattedResponseError', () => {
 
   it('should handle very long error messages', () => {
     const statusCode = 404
-    const message = 'A'.repeat(1000) // Long message
+    const message = 'A'.repeat(1000)
     const error = new FormattedResponseError(statusCode, message)
 
     expect(error.statusCode).toBe(statusCode)
@@ -43,7 +43,7 @@ describe('FormattedResponseError', () => {
   })
 
   it('should handle negative status codes', () => {
-    const statusCode = -1 // Invalid status code
+    const statusCode = -1
     const message = 'Negative status code'
     const error = new FormattedResponseError(statusCode, message)
 
