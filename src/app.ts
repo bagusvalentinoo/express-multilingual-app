@@ -18,8 +18,8 @@ const app = express()
 // Middleware to serve static files
 app.use(express.static('./public'))
 
-// Middleware to log requests
-app.use(morganMiddleware)
+// Middleware to log requests except in test environment
+if (process.env.NODE_ENV !== 'test') app.use(morganMiddleware)
 
 // Middleware to configure CORS
 app.use(corsConfig())
