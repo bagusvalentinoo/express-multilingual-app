@@ -1,21 +1,25 @@
 import request from 'supertest'
-
 import app from '../src/app'
 import {
   MakeRequestOptions,
-  GetSuccessDataResourceMessageOptions
+  GetSuccessDataResourceMessageOptions,
+  Languages
 } from './test-util.type'
 
 export const makeRequest = async ({
   method,
   url,
   data,
-  language = 'default'
+  language = 'default',
+  headers = {},
+  query = {}
 }: MakeRequestOptions) => {
   const req = request(app)[method](url)
 
   if (data) req.send(data)
   if (language && language !== 'default') req.set('Accept-Language', language)
+  Object.entries(headers).forEach(([key, value]) => req.set(key, value))
+  req.query(query)
 
   return req
 }
@@ -25,58 +29,54 @@ export const getSuccessDataResourceMessage = ({
   key,
   language = 'default'
 }: GetSuccessDataResourceMessageOptions) => {
-  if (language === 'default') language = 'en'
-
+  const lang = language === 'default' ? 'en' : language
   const messages = {
     get: {
-      en: `Get ${key} data successfully`, // Message Get Data Success in English
-      id: `Berhasil mendapatkan data ${key}` // Message Get Data Success in Bahasa Indonesia
+      en: `Get ${key} data successfully`,
+      id: `Berhasil mendapatkan data ${key}`
     },
     create: {
-      en: `Create ${key} data successfully`, // Message Create Data Success in English
-      id: `Berhasil membuat data ${key}` // Message Create Data Success in Bahasa Indonesia
+      en: `Create ${key} data successfully`,
+      id: `Berhasil membuat data ${key}`
     },
     update: {
-      en: `Update ${key} data successfully`, // Message Update Data Success in English
-      id: `Berhasil memperbarui data ${key}` // Message Update Data Success in Bahasa Indonesia
+      en: `Update ${key} data successfully`,
+      id: `Berhasil memperbarui data ${key}`
     },
     delete: {
-      en: `Delete ${key} data successfully`, // Message Delete Data Success in English
-      id: `Berhasil menghapus data ${key}` // Message Delete Data Success in Bahasa Indonesia
+      en: `Delete ${key} data successfully`,
+      id: `Berhasil menghapus data ${key}`
     }
   }
 
-  return messages[type][language]
+  return messages[type][lang]
 }
 
 export const getErrorUnprocessableEntityMessage = (
-  language: string = 'default'
+  language: Languages = 'default'
 ) => {
-  if (language === 'default') language = 'en'
-
-  return language === 'en'
-    ? 'Unprocessable Entity: The request could not be processed.' // Message Error Unprocessable Entity in English
-    : 'Entitas Tidak Dapat Diproses: Permintaan tidak dapat diproses.' // Message Error Unprocessable Entity in Bahasa Indonesia
+  const lang = language === 'default' ? 'en' : language
+  return lang === 'en'
+    ? 'Unprocessable Entity: The request could not be processed.'
+    : 'Entitas Tidak Dapat Diproses: Permintaan tidak dapat diproses.'
 }
 
 export const getErrorValidationRequiredMessage = (
   field: string,
-  language: string = 'default'
+  language: Languages = 'default'
 ) => {
-  if (language === 'default') language = 'en'
-
-  return language === 'en'
-    ? `Oops, ${field} cannot be empty` // Message Error Validation Required in English
-    : `Oops, ${field} tidak boleh kosong` // Message Error Validation Required in Bahasa Indonesia
+  const lang = language === 'default' ? 'en' : language
+  return lang === 'en'
+    ? `Oops, ${field} cannot be empty`
+    : `Oops, ${field} tidak boleh kosong`
 }
 
 export const getErrorValidationInvalidTypeMessage = (
   field: string,
-  language: string = 'default'
+  language: Languages = 'default'
 ) => {
-  if (language === 'default') language = 'en'
-
-  return language === 'en'
-    ? `Oops, ${field} must be a valid value` // Message Error Validation Invalid Type in English
-    : `Oops, ${field} harus memiliki nilai yang valid` // Message Error Validation Invalid Type in Bahasa Indonesia
+  const lang = language === 'default' ? 'en' : language
+  return lang === 'en'
+    ? `Oops, ${field} must be a valid value`
+    : `Oops, ${field} harus memiliki nilai yang valid`
 }
