@@ -4,7 +4,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "bun run build && NODE_ENV=production bun run ./dist/server.js",
+    "start": "bun run ./dist/server.js",
     "build": "tsc && tsc-alias",
     "dev": "NODE_ENV=development bun run --watch ./src/server.ts",
     "test": "NODE_ENV=test bun test",
@@ -14,10 +14,10 @@
     "test:unit:watch": "NODE_ENV=test bun --watch test tests/unit/**/*",
     "test:integration": "NODE_ENV=test bun test tests/integration/**/*",
     "test:integration:watch": "NODE_ENV=test bun --watch test tests/integration/**/*",
-    "lint": "bunx eslint .",
-    "lint:fix": "bunx eslint . --fix",
-    "prettier": "bunx prettier --check .",
-    "prettier:fix": "bunx prettier --write .",
+    "lint": "eslint . --ignore-pattern 'dist/**'",
+    "lint:fix": "eslint . --fix --ignore-pattern 'dist/**'",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "prepare": "husky install"
   },
   "lint-staged": {

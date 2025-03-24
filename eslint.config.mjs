@@ -309,7 +309,7 @@ export default tseslint.config(
       // Ignore files
       '**/.husky/**', // Ignore husky files
       '**/coverage/**', // Ignore coverage files
-      '**/dist/**', // Ignore dist files
+      '**/dist/**/*', // Ignore dist files
       '**/logs/**', // Ignore logs files
       '**/node_modules/**', // Ignore node_modules files
       '**/.gitignore', // Ignore gitignore files
