@@ -14,8 +14,9 @@ You can try the live demo here:
 
 ## 📚 API Documentation
 
-You can see the API documentation here:
+The API documentation is available on Postman. Access it here:
 
+- [Postman API Documentation](https://documenter.getpostman.com/view/17470787/2sAYkHqKEX)
 
 ---
 
